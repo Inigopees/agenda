@@ -38,18 +38,29 @@
 						if($_POST["guardar"]){
 							$nombre=strtolower($_POST["nombre"]);
 							$correo=strtolower($_POST["correo"]);
-							if(array_key_exists($nombre,$agenda)){
+							if($nombre=="" && $correo==""){
+								echo "inserte datos en los campos por favor.";
+							}elseif(array_key_exists($nombre,$agenda)){
 								if($correo==""){
 									unset($agenda[$nombre]);
+									foreach ($agenda as $key => $value){
+										echo "Nombre: ".$key."<br>";
+										echo "Correo: ".$value."<br>";
+										echo "<hr>";
+									}
 								}
 								else
 								{
 									$agenda[$nombre]=$correo;
-								}				
-							}elseif($nombre="" && $email=""){
-								echo "inserte datos en los campos por favor.";
+									foreach ($agenda as $key => $value){
+										echo "Nombre: ".$key."<br>";
+										echo "Correo: ".$value."<br>";
+										echo "<hr>";
+									}
+								}
 							}
-							else{
+							else
+							{
 								$agenda[$nombre]=$correo;
 								foreach ($agenda as $key => $value){
 									echo "Nombre: ".$key."<br>";
